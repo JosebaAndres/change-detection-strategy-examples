@@ -1,0 +1,5 @@
+<div class="app-items">
+  <ng-container *ngIf="items">
+    <app-item *ngFor="let item of items" [model]="item"></app-item>
+  </ng-container>
+</div>

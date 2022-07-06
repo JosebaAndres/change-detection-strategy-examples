@@ -3,7 +3,5 @@
     <label [for]="model.id">Description</label>
     <input [id]="model.id" [(ngModel)]="model.description" />
   </div>
-  <ng-container *ngIf="model.items">
-    <app-item *ngFor="let item of model.items" [model]="item"></app-item>
-  </ng-container>
+  <app-items [items]="model.items"></app-items>
 </div>
