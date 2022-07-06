@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "default": "apps/default",
+    "default-e2e": "apps/default-e2e"
+  }
+}
