@@ -2,7 +2,7 @@
   "projectType": "application",
   "root": "apps/default",
   "sourceRoot": "apps/default/src",
-  "prefix": "change-detection-strategy-examples",
+  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
