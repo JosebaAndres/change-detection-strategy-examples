@@ -6,23 +6,26 @@ export class DataService {
   data: Array<ItemModel> = [
     {
       id: '1',
+      code: 'Cod. 1',
       description: 'Item 1',
       items: [
-        { id: '1.1', description: 'Item 1.1' },
-        { id: '1.2', description: 'Item 1.2' },
+        { id: '1.1', code: 'Cod. 1.1', description: 'Item 1.1' },
+        { id: '1.2', code: 'Cod. 1.2', description: 'Item 1.2' },
       ],
     },
     {
       id: '2',
+      code: 'Cod. 2',
       description: 'Item 2',
       items: [
-        { id: '2.1', description: 'Item 2.1' },
+        { id: '2.1', code: 'Cod. 2.1', description: 'Item 2.1' },
         {
           id: '2.2',
+          code: 'Cod. 2.2',
           description: 'Item 2.2',
           items: [
-            { id: '2.2.1', description: 'Item 2.2.1' },
-            { id: '2.2.2', description: 'Item 2.2.2' },
+            { id: '2.2.1', code: 'Cod. 2.2.1', description: 'Item 2.2.1' },
+            { id: '2.2.2', code: 'Cod. 2.2.2', description: 'Item 2.2.2' },
           ],
         },
       ],

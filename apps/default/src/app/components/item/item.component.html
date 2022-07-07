@@ -1,7 +1,37 @@
-<div class="app-item">
-  <div>
-    <label [for]="model.id">Description</label>
-    <input [id]="model.id" [(ngModel)]="model.description" />
+<div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ model.code }} ({{ model.description }})</h5>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="edit()"
+        *ngIf="!isInEditMode"
+      >
+        Edit
+      </button>
+      <form *ngIf="isInEditMode">
+        <div class="mb-3">
+          <label [for]="model.id" class="form-label">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            [id]="model.id"
+            placeholder="Description"
+            [(ngModel)]="modelDescription"
+            name="description"
+          />
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" (click)="save()">
+            Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="cancel()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <app-items [items]="model.items"></app-items>
+  <app-items [items]="model.items" [isFirst]="false"></app-items>
 </div>

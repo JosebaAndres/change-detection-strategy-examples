@@ -8,4 +8,5 @@ import { ItemModel } from '../../models/item';
 })
 export class ItemsComponent {
   @Input() items: Array<ItemModel> | undefined | null;
+  @Input() isFirst = true;
 }

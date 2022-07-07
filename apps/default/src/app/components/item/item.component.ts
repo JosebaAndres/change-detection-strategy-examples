@@ -8,4 +8,21 @@ import { ItemModel } from '../../models/item';
 })
 export class ItemComponent {
   @Input() model!: ItemModel;
+
+  isInEditMode = false;
+  modelDescription = '';
+
+  edit() {
+    this.modelDescription = this.model.description;
+    this.isInEditMode = true;
+  }
+
+  save() {
+    this.model.description = this.modelDescription;
+    this.isInEditMode = false;
+  }
+
+  cancel() {
+    this.isInEditMode = false;
+  }
 }

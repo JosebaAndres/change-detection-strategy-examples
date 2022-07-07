@@ -1,4 +1,4 @@
-<div class="app-items">
+<div class="app-items" [class.app-items--first]="isFirst">
   <ng-container *ngIf="items">
     <app-item *ngFor="let item of items" [model]="item"></app-item>
   </ng-container>
