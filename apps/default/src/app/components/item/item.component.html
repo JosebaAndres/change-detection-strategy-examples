@@ -2,6 +2,9 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">{{ model.code }} ({{ model.description }})</h5>
+      <p class="card-text">
+        Description get count: {{ model.descriptionGetCount$ | async }}
+      </p>
       <button
         type="button"
         class="btn btn-primary"
