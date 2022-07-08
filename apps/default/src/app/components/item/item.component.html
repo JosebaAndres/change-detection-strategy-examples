@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ model.code }} ({{ model.description }})</h5>
       <p class="card-text">
-        Description get count: {{ model.descriptionGetCount$ | async }}
+        Description get count: <span #descriptionGetCount>0</span>
       </p>
       <button
         type="button"

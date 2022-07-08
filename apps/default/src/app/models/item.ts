@@ -11,7 +11,7 @@ export class ItemModel {
   set description(value: string) {
     this._description = value;
   }
-  componentConstructionCount = 0;
+  componentConstructionCount$ = new BehaviorSubject<number>(0);
   descriptionGetCount$ = new BehaviorSubject<number>(0);
   items?: Array<ItemModel>;
 
@@ -32,6 +32,8 @@ export class ItemModel {
   }
 
   addComponentConstructionCount() {
-    this.componentConstructionCount = this.componentConstructionCount + 1;
+    this.componentConstructionCount$.next(
+      this.componentConstructionCount$.value + 1
+    );
   }
 }
