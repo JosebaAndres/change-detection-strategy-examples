@@ -1,0 +1,5 @@
+<div class="app-heroes">
+  <ng-container *ngIf="heroes">
+    <app-hero *ngFor="let hero of heroes" [hero]="hero"></app-hero>
+  </ng-container>
+</div>

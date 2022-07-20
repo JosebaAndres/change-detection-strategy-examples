@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ItemModel } from './models/item';
-import { DataService } from './services/data.service';
+import { HeroModel } from './models/hero';
+import { HeroesService } from './services/heroes.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,8 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  data: Array<ItemModel>;
+  heroes: Array<HeroModel> = this.heroesService.heroes;
 
-  constructor(private dataService: DataService) {
-    this.data = this.dataService.data;
+  constructor(private heroesService: HeroesService) {
   }
 }
