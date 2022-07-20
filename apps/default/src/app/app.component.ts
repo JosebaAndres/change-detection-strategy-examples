@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HeroModel } from './models/hero';
-import { HeroesService } from './services/heroes.service';
+import { PetModel } from './models/pet';
+import { PetsService } from './services/pets.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,8 @@ import { HeroesService } from './services/heroes.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  heroes: Array<HeroModel> = this.heroesService.heroes;
+  pets: Array<PetModel> = this.petsService.pets;
 
-  constructor(private heroesService: HeroesService) {
+  constructor(private petsService: PetsService) {
   }
 }

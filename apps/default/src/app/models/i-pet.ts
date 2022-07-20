@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-export interface IHeroModel {
+export interface IPetModel {
   id: number;
   name: string;
   nameGetCount$: Observable<number>;

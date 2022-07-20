@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs';
-import { IHeroModel } from './i-hero';
+import { IPetModel } from './i-pet';
 
-export class HeroModel implements IHeroModel {
+export class PetModel implements IPetModel {
   id: number;
   private _name = '';
   get name(): string {
