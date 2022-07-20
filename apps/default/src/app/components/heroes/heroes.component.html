@@ -1,5 +1,15 @@
-<div class="app-heroes">
-  <ng-container *ngIf="heroes">
+<table *ngIf="heroes">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Description get count</th>
+    </tr>
+  </thead>
+  <tbody>
     <app-hero *ngFor="let hero of heroes" [hero]="hero"></app-hero>
-  </ng-container>
+  </tbody>
+</table>
+<div>
+  <ng-container *ngIf="heroes"> </ng-container>
 </div>
