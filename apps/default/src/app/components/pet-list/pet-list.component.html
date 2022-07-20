@@ -1,0 +1,5 @@
+<app-context title="Pet list component">
+  <div role="list" *ngIf="pets">
+    <app-pet-list-item *ngFor="let pet of pets" [pet]="pet"></app-pet-list-item>
+  </div>
+</app-context>

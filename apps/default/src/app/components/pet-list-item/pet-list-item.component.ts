@@ -11,11 +11,11 @@ import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { PetModel } from '../../models/pet';
 
 @Component({
-  selector: 'app-pet',
-  templateUrl: './pet.component.html',
-  styleUrls: ['./pet.component.scss'],
+  selector: 'app-pet-list-item',
+  templateUrl: './pet-list-item.component.html',
+  styleUrls: ['./pet-list-item.component.scss'],
 })
-export class PetComponent implements OnChanges, OnDestroy {
+export class PetListItemComponent implements OnChanges, OnDestroy {
   private destroy$ = new ReplaySubject<void>();
   private petChanged$ = new Subject<void>();
 
@@ -23,6 +23,8 @@ export class PetComponent implements OnChanges, OnDestroy {
 
   @ViewChild('descriptionGetCount', { static: true })
   descriptionGetCount!: ElementRef<HTMLSpanElement>;
+
+  selectPet() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pet']) {

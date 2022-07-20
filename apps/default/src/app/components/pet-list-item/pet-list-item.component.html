@@ -1,5 +1,5 @@
-<app-context title="Pet component">
-  <div>
+<app-context title="Pet list item component">
+  <div (click)="selectPet()">
     <div>ID: {{ pet.id }}</div>
     <div>Name: {{ pet.name }}</div>
     <div>Description get count: <span #descriptionGetCount>0</span></div>
