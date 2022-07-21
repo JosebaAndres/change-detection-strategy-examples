@@ -38,7 +38,7 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   }
 
   selectPet() {
-    this.petsService.selectedPetId = this.pet.id;
+    this.petsService.setSelectedPetId(this.pet.id);
   }
 
   isSelected(): boolean {

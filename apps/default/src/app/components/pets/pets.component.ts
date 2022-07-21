@@ -8,7 +8,12 @@ import { PetsService } from '../../services/pets.service';
   styleUrls: ['./pets.component.scss'],
 })
 export class PetsComponent {
-  pets: Array<PetModel> = this.petsService.pets;
+  get pets(): Array<PetModel> {
+    return this.petsService.pets;
+  }
+  get selectedPet(): PetModel | null {
+    return this.petsService.selectedPet;
+  }
 
   constructor(private petsService: PetsService) {}
 }

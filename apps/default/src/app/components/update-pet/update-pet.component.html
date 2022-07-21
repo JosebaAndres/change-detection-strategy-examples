@@ -1,0 +1,11 @@
+<app-context title="Update pet component">
+  <div class="app-update-pet" *ngIf="selectedPet">
+    <mat-form-field appearance="standard">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" [(ngModel)]="value" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="update()">
+      Update pet
+    </button>
+  </div>
+</app-context>

@@ -1,0 +1,11 @@
+<app-context title="Create pet component">
+  <div class="app-create-pet">
+    <mat-form-field appearance="standard">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" [(ngModel)]="value" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="add()">
+      Create pet
+    </button>
+  </div>
+</app-context>

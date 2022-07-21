@@ -1,0 +1,14 @@
+.app-pets {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.app-pets__cu {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.app-pets__list {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}

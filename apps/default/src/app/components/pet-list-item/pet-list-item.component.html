@@ -4,9 +4,11 @@
     [class.app-pet-list-item--selected]="isSelected()"
   >
     <div (click)="selectPet()">
-      <div>ID: {{ pet.id }}</div>
-      <div>Name: {{ pet.name }}</div>
-      <div>Description get count: <span #descriptionGetCount>0</span></div>
+      <div><b>ID: </b>{{ pet.id }}</div>
+      <div><b>Name: </b>{{ pet.name }}</div>
+      <div>
+        <b>Description get count: </b><span #descriptionGetCount>0</span>
+      </div>
     </div>
   </div>
 </app-context>
