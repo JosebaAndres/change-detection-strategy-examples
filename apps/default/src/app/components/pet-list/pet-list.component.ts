@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PetModel } from '../../models/pet';
 
 @Component({
@@ -8,4 +8,11 @@ import { PetModel } from '../../models/pet';
 })
 export class PetListComponent {
   @Input() pets: Array<PetModel> | undefined | null;
+
+  @Input() selectPetId: number | null = null;
+  @Output() selectPetIdChange = new EventEmitter<number>();
+
+  selectPetIdNext(petId: number) {
+    this.selectPetIdChange.next(petId);
+  }
 }

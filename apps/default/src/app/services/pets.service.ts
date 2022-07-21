@@ -5,4 +5,5 @@ import { PetModel } from '../models/pet';
 @Injectable({ providedIn: 'root' })
 export class PetsService {
   pets: Array<PetModel> = Pets;
+  selectedPetId: number | null = null;
 }

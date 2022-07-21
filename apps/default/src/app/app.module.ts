@@ -7,13 +7,15 @@ import { PetListComponent } from './components/pet-list/pet-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContextComponent } from './components/context/context.component';
 import { MatListModule } from '@angular/material/list';
+import { PetsComponent } from './components/pets/pets.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PetListItemComponent,
-    PetListComponent,
     ContextComponent,
+    PetsComponent,
+    PetListComponent,
+    PetListItemComponent,
   ],
   imports: [BrowserModule, FormsModule, BrowserAnimationsModule, MatListModule],
   providers: [],

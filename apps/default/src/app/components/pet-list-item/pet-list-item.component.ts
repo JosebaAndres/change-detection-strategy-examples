@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { PetModel } from '../../models/pet';
+import { PetsService } from '../../services/pets.service';
 
 @Component({
   selector: 'app-pet-list-item',
@@ -24,7 +25,7 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   @ViewChild('descriptionGetCount', { static: true })
   descriptionGetCount!: ElementRef<HTMLSpanElement>;
 
-  selectPet() {}
+  constructor(private petsService: PetsService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pet']) {
@@ -36,7 +37,19 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
     this.destroy$.next();
   }
 
-  refreshPet() {
+  selectPet() {
+    this.petsService.selectedPetId = this.pet.id;
+  }
+
+  isSelected(): boolean {
+    if (this.pet.id == this.petsService.selectedPetId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private refreshPet() {
     this.petChanged$.next();
     if (this.pet) {
       this.pet.nameGetCount$
