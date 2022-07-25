@@ -7,6 +7,19 @@
   background: red;
 }
 
+.app-context--no-detect-changes {
+  animation: backgroundAnimation 3s;
+}
+
+@keyframes backgroundAnimation {
+  from {
+    background: red;
+  }
+  to {
+    background: white;
+  }
+}
+
 .app-context__title {
   font-size: 0.7rem;
 }

@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   Input,
+  NgZone,
   OnChanges,
   OnDestroy,
   SimpleChanges,
@@ -11,6 +12,7 @@ import {
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
+import { ContextComponent } from '../context/context.component';
 
 @Component({
   selector: 'app-pet-list-item',
@@ -27,7 +29,14 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   @ViewChild('descriptionGetCount', { static: true })
   descriptionGetCount!: ElementRef<HTMLSpanElement>;
 
-  constructor(private petsService: PetsService) {}
+  @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
+
+  get title(): string {
+    this.appContext.changeDetectionLaunched();
+    return 'Pet list item component';
+  }
+
+  constructor(private petsService: PetsService, private ngZone: NgZone) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pet']) {
@@ -52,13 +61,15 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   }
 
   private refreshPet() {
-    this.petChanged$.next();
-    if (this.pet) {
-      this.pet.nameGetCount$
-        .pipe(takeUntil(this.destroy$), takeUntil(this.petChanged$))
-        .subscribe((value) => {
-          this.descriptionGetCount.nativeElement.innerHTML = value.toString();
-        });
-    }
+    this.ngZone.runOutsideAngular(() => {
+      this.petChanged$.next();
+      if (this.pet) {
+        this.pet.nameGetCount$
+          .pipe(takeUntil(this.destroy$), takeUntil(this.petChanged$))
+          .subscribe((value) => {
+            this.descriptionGetCount.nativeElement.innerHTML = value.toString();
+          });
+      }
+    });
   }
 }
