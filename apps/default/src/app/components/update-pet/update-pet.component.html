@@ -1,4 +1,4 @@
-<app-context title="Update pet component">
+<app-context [title]="title" #appContext>
   <div class="app-update-pet" *ngIf="selectedPet">
     <mat-form-field appearance="standard">
       <mat-label>Name</mat-label>

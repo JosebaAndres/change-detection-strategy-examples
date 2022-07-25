@@ -4,9 +4,11 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
+import { ContextComponent } from '../context/context.component';
 
 @Component({
   selector: 'app-update-pet',
@@ -18,6 +20,13 @@ export class UpdatePetComponent implements OnChanges {
   value: string | null | undefined = '';
 
   @Input() selectedPet: PetModel | null = null;
+
+  @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
+
+  get title(): string {
+    this.appContext.changeDetectionLaunched();
+    return 'Update pet component';
+  }
 
   constructor(private petsService: PetsService) {}
 
