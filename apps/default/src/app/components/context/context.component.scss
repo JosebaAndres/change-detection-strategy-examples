@@ -1,11 +1,15 @@
 .app-context {
   background: white;
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid orangered;
+}
+
+.app-context__title {
+  color: orangered;
 }
 
 .app-context--detect-changes {
-  background: red;
+  background: blanchedalmondred;
 }
 
 .app-context--no-detect-changes {
@@ -14,7 +18,7 @@
 
 @keyframes backgroundAnimation {
   from {
-    background: red;
+    background: blanchedalmond;
   }
   to {
     background: white;
