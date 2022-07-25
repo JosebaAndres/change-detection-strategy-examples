@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { PETS } from '../mocks/pets';
 import { PetModel } from '../models/pet';
 
@@ -9,18 +10,16 @@ export class PetsService {
   get selectedPetId(): number | null {
     return this._selectedPetId;
   }
-  private _selectedPet: PetModel | null = null;
-  get selectedPet(): PetModel | null {
-    return this._selectedPet;
-  }
+  private _selectedPet$ = new BehaviorSubject<PetModel | null>(null);
+  selectedPet$ = this._selectedPet$.asObservable();
 
   setSelectedPetId(value: number | null) {
     this._selectedPetId = value;
     const fintPet = this.pets.find((pet) => pet.id === value);
     if (fintPet !== undefined) {
-      this._selectedPet = fintPet;
+      this._selectedPet$.next(fintPet);
     } else {
-      this._selectedPet = null;
+      this._selectedPet$.next(null);
     }
   }
 
@@ -34,8 +33,8 @@ export class PetsService {
   }
 
   updateSelectedPet(name: string) {
-    if (this.selectedPet) {
-      this.selectedPet.name = name;
+    if (this._selectedPet$.value) {
+      this._selectedPet$.value.name = name;
     }
   }
 

@@ -10,12 +10,7 @@ import { ContextComponent } from '../context/context.component';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PetsComponent {
-  get pets(): Array<PetModel> {
-    return this.petsService.pets;
-  }
-  get selectedPet(): PetModel | null {
-    return this.petsService.selectedPet;
-  }
+  pets: Array<PetModel> = this.petsService.pets;
 
   get title(): string {
     this.appContext.changeDetectionLaunched();

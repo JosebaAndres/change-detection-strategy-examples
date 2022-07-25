@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';
@@ -16,10 +9,9 @@ import { ContextComponent } from '../context/context.component';
   styleUrls: ['./update-pet.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class UpdatePetComponent implements OnChanges {
-  value: string | null | undefined = '';
-
-  @Input() selectedPet: PetModel | null = null;
+export class UpdatePetComponent {
+  selectedPet: PetModel | null = null;
+  selectedPetName: string | null | undefined = '';
 
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
 
@@ -28,17 +20,16 @@ export class UpdatePetComponent implements OnChanges {
     return 'Update pet component';
   }
 
-  constructor(private petsService: PetsService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedPet']) {
-      this.value = this.selectedPet?.name;
-    }
+  constructor(private petsService: PetsService) {
+    this.petsService.selectedPet$.subscribe((selectedPet) => {
+      this.selectedPet = selectedPet;
+      this.selectedPetName = selectedPet?.name;
+    });
   }
 
   update(): void {
-    if (this.value) {
-      this.petsService.updateSelectedPet(this.value);
+    if (this.selectedPetName) {
+      this.petsService.updateSelectedPet(this.selectedPetName);
     }
   }
 }

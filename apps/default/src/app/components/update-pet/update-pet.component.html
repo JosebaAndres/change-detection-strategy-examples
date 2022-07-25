@@ -2,7 +2,7 @@
   <div class="app-update-pet" *ngIf="selectedPet">
     <mat-form-field appearance="standard">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" [(ngModel)]="value" />
+      <input matInput placeholder="Name" [(ngModel)]="selectedPetName" />
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="update()">
       Update pet
