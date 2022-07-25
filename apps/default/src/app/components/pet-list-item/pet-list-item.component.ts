@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -15,6 +16,7 @@ import { PetsService } from '../../services/pets.service';
   selector: 'app-pet-list-item',
   templateUrl: './pet-list-item.component.html',
   styleUrls: ['./pet-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PetListItemComponent implements OnChanges, OnDestroy {
   private destroy$ = new ReplaySubject<void>();

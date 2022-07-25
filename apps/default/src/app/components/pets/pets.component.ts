@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 
@@ -6,6 +6,7 @@ import { PetsService } from '../../services/pets.service';
   selector: 'app-pets',
   templateUrl: './pets.component.html',
   styleUrls: ['./pets.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PetsComponent {
   get pets(): Array<PetModel> {

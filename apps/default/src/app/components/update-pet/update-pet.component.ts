@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 
@@ -6,6 +12,7 @@ import { PetsService } from '../../services/pets.service';
   selector: 'app-update-pet',
   templateUrl: './update-pet.component.html',
   styleUrls: ['./update-pet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UpdatePetComponent implements OnChanges {
   value: string | null | undefined = '';

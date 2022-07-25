@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { PetsService } from '../../services/pets.service';
 
 @Component({
   selector: 'app-create-pet',
   templateUrl: './create-pet.component.html',
   styleUrls: ['./create-pet.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CreatePetComponent {
   value = '';
