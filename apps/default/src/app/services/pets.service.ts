@@ -22,12 +22,16 @@ export class PetsService {
   }
 
   createPet(name: string) {
-    this.pets.unshift(
-      new PetModel({
-        id: this.getNewId(),
-        name: name,
-      })
-    );
+    const newPet = new PetModel({
+      id: this.getNewId(),
+      name: name,
+    });
+
+    // Update the currect list
+    this.pets.unshift(new PetModel(newPet));
+
+    // Crete a new list with the new item
+    // this.pets$.next([...[newPet], ...this.pets$.value]);
   }
 
   updateSelectedPet(name: string) {
@@ -40,6 +44,14 @@ export class PetsService {
       newPet.name = name;
       this.pets[this.pets.indexOf(this._selectedPet$.value)] = newPet;
       this._selectedPet$.next(newPet);
+
+      // Update the item instance, the array instance and in the selected pets
+      // const newPet = this._selectedPet$.value.clone();
+      // newPet.name = name;
+      // const newPets = [...this.pets$.value];
+      // newPets[newPets.indexOf(this._selectedPet$.value)] = newPet;
+      // this.pets$.next(newPets);
+      // this._selectedPet$.next(newPet);
     }
   }
 
