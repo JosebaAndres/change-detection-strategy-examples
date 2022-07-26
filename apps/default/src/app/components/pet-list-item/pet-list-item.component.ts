@@ -26,6 +26,9 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
 
   @Input() pet!: PetModel;
 
+  @ViewChild('createItemCount', { static: true })
+  createItemCount!: ElementRef<HTMLSpanElement>;
+
   @ViewChild('descriptionGetCount', { static: true })
   descriptionGetCount!: ElementRef<HTMLSpanElement>;
 
@@ -41,6 +44,12 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pet']) {
       this.refreshPet();
+    }
+
+    if (changes['pet'] && changes['pet'].firstChange) {
+      this.ngZone.runOutsideAngular(() => {
+        this.pet.addCreateItemCount();
+      });
     }
   }
 
@@ -68,6 +77,12 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
           .pipe(takeUntil(this.destroy$), takeUntil(this.petChanged$))
           .subscribe((value) => {
             this.descriptionGetCount.nativeElement.innerHTML = value.toString();
+          });
+
+        this.pet.createItemCount$
+          .pipe(takeUntil(this.destroy$), takeUntil(this.petChanged$))
+          .subscribe((value) => {
+            this.createItemCount.nativeElement.innerHTML = value.toString();
           });
       }
     });
