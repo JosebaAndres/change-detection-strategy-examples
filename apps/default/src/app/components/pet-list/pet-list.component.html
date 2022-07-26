@@ -1,5 +1,8 @@
 <app-context [title]="title" #appContext>
-  <div role="list" *ngIf="pets">
-    <app-pet-list-item *ngFor="let pet of pets" [pet]="pet"></app-pet-list-item>
+  <div role="list" *ngIf="pets$ | async">
+    <app-pet-list-item
+      *ngFor="let pet of pets$ | async"
+      [pet]="pet"
+    ></app-pet-list-item>
   </div>
 </app-context>

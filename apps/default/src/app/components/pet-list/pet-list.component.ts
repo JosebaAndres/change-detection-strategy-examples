@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';
 
@@ -7,12 +6,10 @@ import { ContextComponent } from '../context/context.component';
   selector: 'app-pet-list',
   templateUrl: './pet-list.component.html',
   styleUrls: ['./pet-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PetListComponent {
-  get pets(): Array<PetModel> {
-    return this.petsService.pets;
-  }
+  pets$ = this.petsService.pets$;
 
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
 
