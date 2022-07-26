@@ -53,7 +53,7 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
   }
 
   isSelected(): boolean {
-    if (this.pet.id == this.petsService.selectedPetId) {
+    if (this.pet.id === this.petsService.selectedPetId) {
       return true;
     } else {
       return false;
