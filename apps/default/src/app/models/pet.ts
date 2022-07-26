@@ -15,7 +15,15 @@ export class PetModel implements IPetModel {
   private _nameGetCount$: BehaviorSubject<number>;
   nameGetCount$: Observable<number>;
 
-  constructor(params: { id: number; name: string; nameGetCount?: number }) {
+  private _createItemCount$: BehaviorSubject<number>;
+  createItemCount$: Observable<number>;
+
+  constructor(params: {
+    id: number;
+    name: string;
+    nameGetCount?: number;
+    createItemCount?: number;
+  }) {
     this.id = params.id;
     this.name = params.name;
     if (params.nameGetCount === undefined) {
@@ -24,10 +32,22 @@ export class PetModel implements IPetModel {
       this._nameGetCount$ = new BehaviorSubject<number>(params.nameGetCount);
     }
     this.nameGetCount$ = this._nameGetCount$.asObservable();
+    if (params.createItemCount === undefined) {
+      this._createItemCount$ = new BehaviorSubject<number>(0);
+    } else {
+      this._createItemCount$ = new BehaviorSubject<number>(
+        params.createItemCount
+      );
+    }
+    this.createItemCount$ = this._createItemCount$.asObservable();
   }
 
   private addNameGetCount() {
     this._nameGetCount$.next(this._nameGetCount$.value + 1);
+  }
+
+  addCreateItemCount() {
+    this._createItemCount$.next(this._createItemCount$.value + 1);
   }
 
   clone() {
@@ -35,6 +55,7 @@ export class PetModel implements IPetModel {
       id: this.id,
       name: this.name,
       nameGetCount: this._nameGetCount$.value,
+      createItemCount: this._createItemCount$.value,
     });
   }
 }
