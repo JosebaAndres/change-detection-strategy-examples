@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';

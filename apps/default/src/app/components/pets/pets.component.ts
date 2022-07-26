@@ -14,6 +14,4 @@ export class PetsComponent {
   }
 
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
-
-  constructor() {}
 }

@@ -18,7 +18,7 @@ import { ContextComponent } from '../context/context.component';
   selector: 'app-pet-list-item',
   templateUrl: './pet-list-item.component.html',
   styleUrls: ['./pet-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PetListItemComponent implements OnChanges, OnDestroy {
   private destroy$ = new ReplaySubject<void>();
