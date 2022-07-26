@@ -2,9 +2,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, takeUntil } from 'rxjs';
 import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';
@@ -15,7 +16,8 @@ import { ContextComponent } from '../context/context.component';
   styleUrls: ['./update-pet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UpdatePetComponent {
+export class UpdatePetComponent implements OnDestroy {
+  private destroy$ = new ReplaySubject<void>();
   selectedPet$: Observable<PetModel | null> = this.petsService.selectedPet$;
   selectedPetName: string | null | undefined = '';
 
@@ -30,10 +32,16 @@ export class UpdatePetComponent {
     private petsService: PetsService,
     private cdr: ChangeDetectorRef
   ) {
-    this.petsService.selectedPet$.subscribe((selectedPet) => {
-      this.selectedPetName = selectedPet?.name;
-      this.cdr.markForCheck();
-    });
+    this.petsService.selectedPet$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((selectedPet) => {
+        this.selectedPetName = selectedPet?.name;
+        this.cdr.markForCheck();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 
   update(): void {
