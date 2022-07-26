@@ -1,5 +1,5 @@
 <app-context [title]="title" #appContext>
-  <div class="app-update-pet" *ngIf="selectedPet">
+  <div class="app-update-pet" *ngIf="selectedPet$ | async">
     <mat-form-field appearance="standard">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Name" [(ngModel)]="selectedPetName" />
