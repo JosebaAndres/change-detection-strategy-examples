@@ -12,7 +12,7 @@ import {
   selector: 'app-context',
   templateUrl: './context.component.html',
   styleUrls: ['./context.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContextComponent {
   private changeDetectionLaunchedCount = 0;

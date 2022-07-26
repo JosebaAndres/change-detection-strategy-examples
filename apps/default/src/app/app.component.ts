@@ -5,7 +5,7 @@ import { ContextComponent } from './components/context/context.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;

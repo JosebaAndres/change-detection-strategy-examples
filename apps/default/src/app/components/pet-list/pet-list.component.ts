@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { PetModel } from '../../models/pet';
 import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';
 
@@ -19,4 +20,8 @@ export class PetListComponent {
   }
 
   constructor(private petsService: PetsService) {}
+
+  trackById(index: number, item: PetModel) {
+    return item.id;
+  }
 }

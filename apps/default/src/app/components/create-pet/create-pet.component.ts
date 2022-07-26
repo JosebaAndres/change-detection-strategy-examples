@@ -6,7 +6,7 @@ import { ContextComponent } from '../context/context.component';
   selector: 'app-create-pet',
   templateUrl: './create-pet.component.html',
   styleUrls: ['./create-pet.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreatePetComponent {
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;

@@ -1,7 +1,7 @@
 <app-context [title]="title" #appContext>
   <div role="list" *ngIf="pets$ | async">
     <app-pet-list-item
-      *ngFor="let pet of pets$ | async"
+      *ngFor="let pet of pets$ | async; trackBy: trackById"
       [pet]="pet"
     ></app-pet-list-item>
   </div>

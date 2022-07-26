@@ -5,7 +5,7 @@ import { ContextComponent } from '../context/context.component';
   selector: 'app-pets',
   templateUrl: './pets.component.html',
   styleUrls: ['./pets.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PetsComponent {
   get title(): string {
