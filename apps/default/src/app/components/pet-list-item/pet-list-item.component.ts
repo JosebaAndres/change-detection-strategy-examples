@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
@@ -48,21 +49,30 @@ export class PetListItemComponent implements OnChanges, OnDestroy {
     return 'Pet list item component';
   }
 
-  isSelected$: Observable<boolean>;
+  isSelected = false;
 
-  constructor(private petsService: PetsService, private ngZone: NgZone) {
-    this.isSelected$ = combineLatest([
-      this.pet$,
-      this.petsService.selectedPetId$,
-    ]).pipe(
-      map(([pet, selectedPetId]) => {
-        if (pet && pet.id === selectedPetId) {
-          return true;
-        } else {
-          return false;
+  constructor(
+    private petsService: PetsService,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
+  ) {
+    combineLatest([this.pet$, this.petsService.selectedPetId$])
+      .pipe(
+        map(([pet, selectedPetId]) => {
+          if (pet && pet.id === selectedPetId) {
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((value) => {
+        if (this.isSelected !== value) {
+          this.isSelected = value;
+          this.cdr.markForCheck();
         }
-      })
-    );
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

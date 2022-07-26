@@ -1,7 +1,7 @@
 <app-context [title]="title" #appContext>
   <div
     class="app-pet-list-item"
-    [class.app-pet-list-item--selected]="isSelected$ | async"
+    [class.app-pet-list-item--selected]="isSelected"
   >
     <div (click)="selectPet()">
       <div><b>ID: </b>{{ pet.id }}</div>
