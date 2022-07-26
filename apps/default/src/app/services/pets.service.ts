@@ -6,15 +6,13 @@ import { PetModel } from '../models/pet';
 @Injectable({ providedIn: 'root' })
 export class PetsService {
   pets: Array<PetModel> = PETS;
-  private _selectedPetId: number | null = null;
-  get selectedPetId(): number | null {
-    return this._selectedPetId;
-  }
+  private _selectedPetId$ = new BehaviorSubject<number | null>(null);
+  selectedPetId$ = this._selectedPetId$.asObservable();
   private _selectedPet$ = new BehaviorSubject<PetModel | null>(null);
   selectedPet$ = this._selectedPet$.asObservable();
 
   setSelectedPetId(value: number | null) {
-    this._selectedPetId = value;
+    this._selectedPetId$.next(value);
     const fintPet = this.pets.find((pet) => pet.id === value);
     if (fintPet !== undefined) {
       this._selectedPet$.next(fintPet);
@@ -35,13 +33,13 @@ export class PetsService {
   updateSelectedPet(name: string) {
     if (this._selectedPet$.value) {
       // Update the name property
-      this._selectedPet$.value.name = name;
+      // this._selectedPet$.value.name = name;
 
       // Update the item instance in the array and in the selected pets
-      // const newPet = this._selectedPet$.value.clone();
-      // newPet.name = name;
-      // this.pets[this.pets.indexOf(this._selectedPet$.value)] = newPet;
-      // this._selectedPet$.next(newPet);
+      const newPet = this._selectedPet$.value.clone();
+      newPet.name = name;
+      this.pets[this.pets.indexOf(this._selectedPet$.value)] = newPet;
+      this._selectedPet$.next(newPet);
     }
   }
 
