@@ -34,7 +34,14 @@ export class PetsService {
 
   updateSelectedPet(name: string) {
     if (this._selectedPet$.value) {
+      // Update the name property
       this._selectedPet$.value.name = name;
+
+      // Update the item instance in the array and in the selected pets
+      // const newPet = this._selectedPet$.value.clone();
+      // newPet.name = name;
+      // this.pets[this.pets.indexOf(this._selectedPet$.value)] = newPet;
+      // this._selectedPet$.next(newPet);
     }
   }
 

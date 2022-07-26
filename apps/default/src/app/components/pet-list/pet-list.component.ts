@@ -1,12 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { PetModel } from '../../models/pet';
+import { PetsService } from '../../services/pets.service';
 import { ContextComponent } from '../context/context.component';
 
 @Component({
@@ -16,10 +15,9 @@ import { ContextComponent } from '../context/context.component';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PetListComponent {
-  @Input() pets: Array<PetModel> | undefined | null;
-
-  @Input() selectPetId: number | null = null;
-  @Output() selectPetIdChange = new EventEmitter<number>();
+  get pets(): Array<PetModel> {
+    return this.petsService.pets;
+  }
 
   @ViewChild('appContext', { static: true }) appContext!: ContextComponent;
 
@@ -28,7 +26,5 @@ export class PetListComponent {
     return 'Pet list component';
   }
 
-  selectPetIdNext(petId: number) {
-    this.selectPetIdChange.next(petId);
-  }
+  constructor(private petsService: PetsService) {}
 }
